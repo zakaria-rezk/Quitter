@@ -5,24 +5,24 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          <span class="gt-sm">Twitter</span> 
-          <q-icon name="fa-brands fa-x-twitter" size="lg" color="primary" class="q-pa-md lt-md absolute-center" ></q-icon>
+          <span class="gt-sm">{{$route.name}}</span> 
+          <q-icon name="fa-brands fa-x-twitter" size="lg" color="primary" class="q-pa-md lt-md absolute-center"></q-icon>
            </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered :width="283">
       <!-- drawer content -->
-      <q-icon name="fa-brands fa-x-twitter" size="lg" color="primary" class="q-pa-md"></q-icon>
+      <q-icon name="fa-brands fa-x-twitter" size="lg" color="primary" class="q-pa-md" ></q-icon>
       <q-list bordered>
-      <q-item clickable v-ripple to="/">
+      <q-item clickable v-ripple to="/" exact>
         <q-item-section avatar>
           <q-icon name="fa-solid fa-house" />
         </q-item-section>
 
         <q-item-section class="text-h6 text-weight-bold" >Home</q-item-section>
       </q-item> 
-      <q-item clickable v-ripple to="/about">
+      <q-item clickable v-ripple to="/about" exact>
         <q-item-section avatar>
           <q-icon  name="fa-solid fa-circle-info" />
         </q-item-section>
