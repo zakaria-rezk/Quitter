@@ -1,41 +1,79 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="lHr lpR fFf">
+    <q-header elevated class="bg-white text-dark">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
-          qwitter 
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+        <q-toolbar-title class="text-weight-bold">
+          <span class="gt-sm">Twitter</span> 
+          <q-icon name="fa-brands fa-x-twitter" size="lg" color="primary" class="q-pa-md lt-md absolute-center" ></q-icon>
+           </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
-      <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
+    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered :width="283">
+      <!-- drawer content -->
+      <q-icon name="fa-brands fa-x-twitter" size="lg" color="primary" class="q-pa-md"></q-icon>
+      <q-list bordered>
+      <q-item clickable v-ripple to="/">
+        <q-item-section avatar>
+          <q-icon name="fa-solid fa-house" />
+        </q-item-section>
 
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item-section class="text-h6 text-weight-bold" >Home</q-item-section>
+      </q-item> 
+      <q-item clickable v-ripple to="/about">
+        <q-item-section avatar>
+          <q-icon  name="fa-solid fa-circle-info" />
+        </q-item-section>
+
+        <q-item-section class="text-h6 text-weight-bold">about</q-item-section>
+      </q-item>
+
+      
+    </q-list>
+    </q-drawer>
+<!-- drawer content -->
+    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+      <q-input color="primary"  v-model="text" label="Search" class="q-ma-md" outlined rounded  dense >
+        <template v-slot:prepend>
+          <q-icon name="event" />
+        </template>
+      </q-input>
+      <q-list padding separator>
+      <q-item class="q-pa-sm">
+        <q-item-section>
+          <q-item-label class="text-grey">Eduction</q-item-label>
+          <q-item-label class="text-weight-bold">Some Thing amazing happened!</q-item-label>
+          <q-item-label caption>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>5 min ago</q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item class="q-pa-md">
+        <q-item-section>
+          <q-item-label class="text-grey">Eduction</q-item-label>
+          <q-item-label class="text-weight-bold">Some Thing amazing happened!</q-item-label>
+          <q-item-label caption>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>5 min ago</q-item-label>
+        </q-item-section>
+      </q-item>
+      <q-item class="q-pa-sm">
+        <q-item-section>
+          <q-item-label class="text-grey">Eduction</q-item-label>
+          <q-item-label class="text-weight-bold">Some Thing amazing happened!</q-item-label>
+          <q-item-label caption>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+        </q-item-section>
+
+        <q-item-section side top>
+          <q-item-label caption>5 min ago</q-item-label>
+        </q-item-section>
+      </q-item>
       </q-list>
     </q-drawer>
 
@@ -46,71 +84,24 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+import { ref } from "vue";
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
-
-export default defineComponent({
-  name: 'MainLayout',
-
-  components: {
-    EssentialLink
-  },
-
-  setup () {
-    const leftDrawerOpen = ref(false)
+export default {
+  setup() {
+    const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
 
     return {
-      essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+
+      rightDrawerOpen,
+      toggleRightDrawer() {
+        rightDrawerOpen.value = !rightDrawerOpen.value;
+      },
+    };
+  },
+};
 </script>
