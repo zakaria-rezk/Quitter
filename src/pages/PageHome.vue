@@ -36,7 +36,7 @@
     </div>
     <q-separator size="10px" color="grey-2" />
     <q-list  separator>
-      <q-item class="qweet q-py-sm" v-for="tweet in tweets">
+      <q-item class="qweet q-py-sm" v-for="tweet in tweets" :key="tweet.time">
         <div class="qweet-item">
           <q-item-section avatar top>
             <q-avatar size="xl">
