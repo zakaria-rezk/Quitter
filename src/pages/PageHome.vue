@@ -110,7 +110,7 @@ const deletetweet=(tweet)=>{
 }
 //liekd
 const like =(tweet) =>{
- tweet.isliked =true;
+ tweet.isliked =!tweet.isliked;
 }
 </script>
 <style scoped>
